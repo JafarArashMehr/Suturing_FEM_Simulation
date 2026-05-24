@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<VTKFile type="Collection" version="0.1">
+  <Collection>
+    <DataSet timestep="0.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00000.vtu"/>
+    <DataSet timestep="1.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00001.vtu"/>
+    <DataSet timestep="2.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00002.vtu"/>
+    <DataSet timestep="3.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00003.vtu"/>
+    <DataSet timestep="4.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00004.vtu"/>
+    <DataSet timestep="5.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00005.vtu"/>
+    <DataSet timestep="6.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00006.vtu"/>
+    <DataSet timestep="7.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00007.vtu"/>
+    <DataSet timestep="8.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00008.vtu"/>
+    <DataSet timestep="9.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00009.vtu"/>
+    <DataSet timestep="10.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00010.vtu"/>
+    <DataSet timestep="11.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00011.vtu"/>
+    <DataSet timestep="12.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00012.vtu"/>
+    <DataSet timestep="13.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00013.vtu"/>
+    <DataSet timestep="14.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00014.vtu"/>
+    <DataSet timestep="15.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00015.vtu"/>
+    <DataSet timestep="16.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00016.vtu"/>
+    <DataSet timestep="17.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00017.vtu"/>
+    <DataSet timestep="18.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00018.vtu"/>
+    <DataSet timestep="19.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00019.vtu"/>
+    <DataSet timestep="20.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00020.vtu"/>
+    <DataSet timestep="21.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00021.vtu"/>
+    <DataSet timestep="22.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00022.vtu"/>
+    <DataSet timestep="23.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00023.vtu"/>
+    <DataSet timestep="24.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00024.vtu"/>
+    <DataSet timestep="25.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00025.vtu"/>
+    <DataSet timestep="26.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00026.vtu"/>
+    <DataSet timestep="27.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00027.vtu"/>
+    <DataSet timestep="28.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00028.vtu"/>
+    <DataSet timestep="29.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00029.vtu"/>
+    <DataSet timestep="30.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00030.vtu"/>
+    <DataSet timestep="31.000000" group="" part="0" file="combined_stress_warp_vtu/stress_00031.vtu"/>
+  </Collection>
+</VTKFile>
