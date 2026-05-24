@@ -1,4 +1,25 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+generate_visualization.py
+Writes visualization.html then optionally starts a local HTTP server.
+
+Usage:
+    python3 generate_visualization.py            # write HTML only
+    python3 generate_visualization.py --serve    # write + start server on port 8080
+    python3 generate_visualization.py --serve --port 9000
+"""
+
+import argparse
+import os
+import subprocess
+import sys
+import threading
+import webbrowser
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_FILE   = os.path.join(SCRIPT_DIR, "visualization.html")
+
+HTML = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1045,3 +1066,30 @@ setMode('single');
 </script>
 </body>
 </html>
+"""
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate visualization.html")
+    parser.add_argument("--serve", action="store_true",
+                        help="start python3 -m http.server after writing the file")
+    parser.add_argument("--port", type=int, default=8080,
+                        help="HTTP server port (default: 8080)")
+    args = parser.parse_args()
+
+    with open(OUT_FILE, "w", encoding="utf-8") as fh:
+        fh.write(HTML)
+    print(f"Written: {OUT_FILE}")
+
+    if args.serve:
+        url = f"http://localhost:{args.port}/visualization.html"
+        print(f"Starting HTTP server on port {args.port} ...")
+        print(f"Opening browser at: {url}")
+        print("Press Ctrl-C to stop.")
+        os.chdir(SCRIPT_DIR)
+        threading.Timer(1.2, lambda: webbrowser.open(url)).start()
+        subprocess.run([sys.executable, "-m", "http.server", str(args.port)])
+
+
+if __name__ == "__main__":
+    main()
