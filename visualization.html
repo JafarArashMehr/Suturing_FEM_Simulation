@@ -643,30 +643,21 @@
         pulls the wound edges together; the tool records the evolving von&nbsp;Mises stress field
         and wound-closure displacement across all 32 output frames.</p>
       <p>Contact between the wound faces is enforced with an <b>Augmented Lagrangian Method (ALM)</b>,
-        preventing interpenetration as the wound closes. The nonlinear system is solved with
-        a damped Newton–Raphson scheme with automatic bisection fallback.</p>
+        preventing interpenetration as the wound closes.</p>
+      <p><i>Reference: Wriggers, Peter. Computational contact mechanics. Edited by Tod A. Laursen. Vol. 2. Berlin:
+          Springer, 2006.</i></p>
 
       <h3>Material model</h3>
-      <p><b>Compressible Neo-Hookean</b> hyperelastic solid &mdash; appropriate for large-strain,
+      <p>The whole suture pad was modeled as a hyperelastic material model (Neo-Hookean).
+        <b>Compressible Neo-Hookean</b> hyperelastic solid &mdash; appropriate for large-strain,
         nearly-incompressible soft tissue.
         The strain-energy density is
         &Psi;&nbsp;=&nbsp;&mu;/2&thinsp;(I&#8321;&minus;3)&minus;&mu;&thinsp;ln&thinsp;J&nbsp;+&nbsp;&lambda;/2&thinsp;(ln&thinsp;J)&sup2;,
-        where &mu; and &lambda; are the Lam&eacute; parameters derived from E and &nu;.</p>
-
-      <h3>Fixed geometry &amp; mesh constants</h3>
-      <div class="info-grid">
-        <div class="info-row"><span class="info-key">Pad width (X)</span><span class="info-val">140 mm</span></div>
-        <div class="info-row"><span class="info-key">Pad depth (Y)</span><span class="info-val">100 mm</span></div>
-        <div class="info-row"><span class="info-key">Pad height (Z)</span><span class="info-val">10 mm</span></div>
-        <div class="info-row"><span class="info-key">Wound length (Y)</span><span class="info-val">50 mm &nbsp;<span
-              class="info-note">y = 25–75 mm</span></span></div>
-        <div class="info-row"><span class="info-key">Wound depth</span><span class="info-val">5 mm</span></div>
-        <div class="info-row"><span class="info-key">Suture hole depth</span><span class="info-val">4 mm</span></div>
-        <div class="info-row"><span class="info-key">Suture hole diameter</span><span class="info-val">0.7 mm</span>
-        </div>
-        <div class="info-row"><span class="info-key">Poisson ratio &nu;</span><span class="info-val">0.45 &nbsp;<span
-              class="info-note">nearly incompressible</span></span></div>
-      </div>
+        where &mu; and &lambda; are the Lam&eacute; parameters derived from E and &nu;.
+      </p>
+      <p><i>Reference: Logg, Anders, Kent-Andre Mardal, and Garth Wells, eds. Automated solution of differential
+          equations by the finite element method: The FEniCS book. Vol. 84. Springer Science &amp; Business Media, 2012.
+        </i></p>
 
       <h3>Variable parameters (selectable in UI)</h3>
       <div class="info-grid">
@@ -681,165 +672,22 @@
       </div>
 
       <h3>Schematic</h3>
-      <div id="schematic-wrap" style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center">
-
-        <!-- ── LEFT: pad overview ── -->
-        <div>
-          <div
-            style="font-size:11px;color:#3d8a84;text-align:center;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">
-            Fig 1 — Pad overview (top view, X–Y plane)
-          </div>
-          <svg width="390" height="290" viewBox="0 0 390 290" font-family="'Segoe UI',sans-serif" font-size="11">
-            <defs>
-              <marker id="a1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <path d="M0,0 L6,3 L0,6 Z" fill="#2dd4bf" />
-              </marker>
-              <marker id="a2" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
-                <path d="M6,0 L0,3 L6,6 Z" fill="#2dd4bf" />
-              </marker>
-            </defs>
-
-            <!-- pad body -->
-            <rect x="50" y="50" width="290" height="170" rx="4" fill="#0c2422" stroke="#2dd4bf" stroke-width="1.5" />
-
-            <!-- wound V-notch at top centre -->
-            <polygon points="180,50 200,50 190,85" fill="#050f0f" stroke="#f97316" stroke-width="1.5" />
-            <text x="190" y="38" text-anchor="middle" fill="#f97316">Wound</text>
-            <line x1="190" y1="41" x2="190" y2="48" stroke="#f97316" stroke-width="1" />
-
-            <!-- exit holes (left, x=110) -->
-            <circle cx="110" cy="70" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <circle cx="110" cy="100" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <circle cx="110" cy="130" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <circle cx="110" cy="160" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-
-            <!-- insertion holes (right, x=270) -->
-            <circle cx="270" cy="80" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <circle cx="270" cy="110" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <circle cx="270" cy="140" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <circle cx="270" cy="170" r="5" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-
-            <!-- suture threads (above pad) -->
-            <path d="M110,70  Q190,30 270,80" fill="none" stroke="#99f6e4" stroke-width="1.4" stroke-dasharray="4,3" />
-            <path d="M110,100 Q190,60 270,110" fill="none" stroke="#99f6e4" stroke-width="1.4" stroke-dasharray="4,3" />
-            <path d="M110,130 Q190,90 270,140" fill="none" stroke="#99f6e4" stroke-width="1.4" stroke-dasharray="4,3" />
-            <path d="M110,160 Q190,120 270,170" fill="none" stroke="#99f6e4" stroke-width="1.4"
-              stroke-dasharray="4,3" />
-
-            <!-- phase labels -->
-            <text x="185" y="65" text-anchor="middle" fill="#99f6e4" font-size="10">Ph.1</text>
-            <text x="185" y="94" text-anchor="middle" fill="#99f6e4" font-size="10">Ph.2</text>
-            <text x="185" y="122" text-anchor="middle" fill="#99f6e4" font-size="10">Ph.3</text>
-            <text x="185" y="150" text-anchor="middle" fill="#99f6e4" font-size="10">Ph.4</text>
-
-            <!-- fixed BC left -->
-            <line x1="50" y1="50" x2="50" y2="220" stroke="#7ab5af" stroke-width="2" />
-            <line x1="50" y1="65" x2="36" y2="79" stroke="#7ab5af" stroke-width="1.2" />
-            <line x1="50" y1="90" x2="36" y2="104" stroke="#7ab5af" stroke-width="1.2" />
-            <line x1="50" y1="115" x2="36" y2="129" stroke="#7ab5af" stroke-width="1.2" />
-            <line x1="50" y1="140" x2="36" y2="154" stroke="#7ab5af" stroke-width="1.2" />
-            <line x1="50" y1="165" x2="36" y2="179" stroke="#7ab5af" stroke-width="1.2" />
-            <line x1="50" y1="190" x2="36" y2="204" stroke="#7ab5af" stroke-width="1.2" />
-            <text x="24" y="140" text-anchor="middle" fill="#7ab5af" font-size="10"
-              transform="rotate(-90,24,140)">Fixed</text>
-
-            <!-- hole labels -->
-            <text x="110" y="188" text-anchor="middle" fill="#7ab5af">Exit</text>
-            <text x="270" y="193" text-anchor="middle" fill="#7ab5af">Insertion</text>
-
-            <!-- dim: width -->
-            <line x1="50" y1="240" x2="340" y2="240" stroke="#2dd4bf" stroke-width="1" marker-start="url(#a2)"
-              marker-end="url(#a1)" />
-            <text x="195" y="235" text-anchor="middle" fill="#2dd4bf">W = 140 mm</text>
-
-            <!-- dim: depth -->
-            <line x1="355" y1="50" x2="355" y2="220" stroke="#2dd4bf" stroke-width="1" marker-start="url(#a2)"
-              marker-end="url(#a1)" />
-            <text x="375" y="140" text-anchor="middle" fill="#2dd4bf" font-size="10"
-              transform="rotate(90,375,140)">D=100</text>
-          </svg>
-        </div>
-
-        <!-- ── RIGHT: single-suture tension detail ── -->
-        <div>
-          <div
-            style="font-size:11px;color:#3d8a84;text-align:center;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">
-            Fig 2 — Suture tension detail (one suture, side view)
-          </div>
-          <svg width="360" height="290" viewBox="0 0 360 290" font-family="'Segoe UI',sans-serif" font-size="11">
-            <defs>
-              <marker id="ta" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-                <path d="M0,0 L7,3.5 L0,7 Z" fill="#f97316" />
-              </marker>
-              <marker id="ta2" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto">
-                <path d="M7,0 L0,3.5 L7,7 Z" fill="#f97316" />
-              </marker>
-              <marker id="da" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <path d="M0,0 L6,3 L0,6 Z" fill="#527a75" />
-              </marker>
-              <marker id="da2" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
-                <path d="M6,0 L0,3 L6,6 Z" fill="#527a75" />
-              </marker>
-            </defs>
-
-            <!-- tissue block left of wound -->
-            <rect x="20" y="90" width="110" height="110" rx="3" fill="#0c2422" stroke="#2dd4bf" stroke-width="1.5" />
-            <!-- tissue block right of wound -->
-            <rect x="230" y="90" width="110" height="110" rx="3" fill="#0c2422" stroke="#2dd4bf" stroke-width="1.5" />
-
-            <!-- wound gap (centre) -->
-            <rect x="130" y="90" width="100" height="110" rx="2" fill="#030a0a" stroke="#f97316" stroke-width="1"
-              stroke-dasharray="4,3" />
-            <text x="180" y="150" text-anchor="middle" fill="#f97316" font-size="10">Wound</text>
-            <text x="180" y="163" text-anchor="middle" fill="#f97316" font-size="10">gap</text>
-
-            <!-- wound opening dimension -->
-            <line x1="130" y1="78" x2="230" y2="78" stroke="#f97316" stroke-width="1" marker-start="url(#ta2)"
-              marker-end="url(#ta)" />
-            <text x="180" y="72" text-anchor="middle" fill="#f97316" font-size="10">w (variable)</text>
-
-            <!-- exit hole (left block) -->
-            <circle cx="90" cy="120" r="9" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <text x="90" y="165" text-anchor="middle" fill="#7ab5af" font-size="10">Exit hole</text>
-            <!-- hole depth dashed line -->
-            <line x1="90" y1="129" x2="90" y2="160" stroke="#527a75" stroke-width="1" stroke-dasharray="2,2" />
-
-            <!-- insertion hole (right block) -->
-            <circle cx="270" cy="140" r="9" fill="#071a18" stroke="#2dd4bf" stroke-width="1.5" />
-            <text x="270" y="185" text-anchor="middle" fill="#7ab5af" font-size="10">Insertion hole</text>
-
-            <!-- suture thread: exit → over wound → insertion -->
-            <path d="M99,120 Q180,50 261,140" fill="none" stroke="#99f6e4" stroke-width="2" stroke-dasharray="5,3" />
-            <text x="180" y="62" text-anchor="middle" fill="#99f6e4" font-size="11">Suture thread</text>
-
-            <!-- dashed centre-line connecting the two holes (force direction reference) -->
-            <line x1="99" y1="121" x2="261" y2="139" stroke="#f97316" stroke-width="1" stroke-dasharray="5,4"
-              opacity="0.4" />
-
-            <!-- TENSION at exit hole: arrow along exit→insertion direction -->
-            <line x1="60.2" y1="116.7" x2="98.9" y2="121.0" stroke="#f97316" stroke-width="2.5" marker-end="url(#ta)" />
-            <text x="55" y="108" text-anchor="middle" fill="#f97316" font-size="11" font-weight="700">T</text>
-
-            <!-- TENSION at insertion hole: arrow along insertion→exit direction -->
-            <line x1="299.8" y1="143.3" x2="261.1" y2="139.0" stroke="#f97316" stroke-width="2.5"
-              marker-end="url(#ta)" />
-            <text x="308" y="133" text-anchor="middle" fill="#f97316" font-size="11" font-weight="700">T</text>
-
-            <!-- hole diameter annotation -->
-            <text x="90" y="108" text-anchor="middle" fill="#527a75" font-size="9">∅ 0.7 mm</text>
-
-            <!-- legend box -->
-            <rect x="20" y="225" width="320" height="48" rx="4" fill="#0a2220" stroke="#1a4d47" stroke-width="1" />
-            <line x1="35" y1="238" x2="60" y2="238" stroke="#99f6e4" stroke-width="2" stroke-dasharray="5,3" />
-            <text x="65" y="242" fill="#99f6e4">Suture thread</text>
-            <line x1="155" y1="238" x2="180" y2="238" stroke="#f97316" stroke-width="2.5" marker-end="url(#ta)" />
-            <text x="185" y="242" fill="#f97316">Tension T on hole wall</text>
-            <text x="35" y="260" fill="#3d8a84" font-size="10">
-              Traction applied to inner cylindrical surface of each hole, pulling tissue toward wound centre.
-            </text>
-          </svg>
-        </div>
-
+      <div id="schematic-wrap" style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+        <figure style="margin:0;max-width:760px;text-align:center">
+          <img src="Picture1-Photoroom.png" alt="Suture pad schematic"
+            style="width:100%;height:auto;display:block;border:1px solid #1a4d47;border-radius:8px">
+          <figcaption style="margin-top:10px;font-size:12px;color:#b0ddd8;line-height:1.6">
+            𝑭𝒊𝒈𝒖𝒓𝒆. Three-dimensional dimensions of the suture pad. The wound is positioned at the center of the
+            pad and
+            has an opening at the surface (a). A cross-sectional front view of the pad is shown in (b). The wound was
+            modeled as a wedge-shaped defect with its maximum opening at the surface and a constant depth of 0.5 cm. The
+            hole depth and diameter were fixed at 0.4 cm and 0.7 mm, respectively. The forces generated during knot
+            tying
+            were simulated as pressures applied to the internal surfaces of the holes, as illustrated in the front view
+            (c). These pressures were applied along the line connecting the centers of each pair of holes (corresponding
+            to the needle entry and exit points of a single suture), as shown in the top view (d).
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
